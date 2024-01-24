@@ -46,6 +46,19 @@ public class MainActivity extends AppCompatActivity {
 
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, items);
                         listView.setAdapter(adapter);
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                                Intent intent = new Intent(MainActivity.this, PlaySong.class);
+                                String currentSong = listView.getItemAtPosition(position).toString();
+                                intent.putExtra("songList",mySongs);
+                                intent.putExtra("currentSong",currentSong);
+                                intent.putExtra("position",position);
+                                startActivity(intent);
+                            }
+                        });
+
+
                     }
 
                     @Override
